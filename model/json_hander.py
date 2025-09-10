@@ -23,8 +23,8 @@ class JSONHandler:
             print(f"错误：文件 {self.file_path} 不存在")
 
 
-    def set_version(self, key: str, value: Any) -> bool:
-        self.data[key]["version"] = value
+    def set_version(self, key: str, value: Any, key1:Any) -> bool:
+        self.data[key][key1] = value
         with open(self.file_path, "w", encoding="utf-8") as f:
                 json.dump(self.data, f, ensure_ascii=False, indent=4)
         return True

@@ -3,6 +3,8 @@ import re
 import os
 import sys
 import random
+import time
+
 import requests
 from lxml import html
 from json_hander import JSONHandler
@@ -26,13 +28,14 @@ def getVersion(url):
                 tag_text = h2_tag[0].text.strip()
                 version_pattern = re.compile(r'\d+\.\d+\.\d+\.\d+')
                 version_match = version_pattern.search(tag_text)
-                hander = JSONHandler("./data/software.json")
+                hander = JSONHandler("../data/software.json")
                 version = hander.read_version("Everything")
                 print("-" * 50)
                 if version==version_match.group():
                     print(f"😒无更新,当前版本：{version}")
                 else:
-                    hander.set_version("Everything",version_match.group())
+                    hander.set_version("Everything",version_match.group(),"version")
+                    hander.set_version("Everything",time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()),"updateTime")
                     print(f"🎉检查到更新,{version}  -->  {version_match.group()}")
                     # 检查到更新才修改链接
                     download_urls = get_download_url(version_match.group())

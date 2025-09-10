@@ -22,6 +22,18 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
+
+    - name: Prepare SSH key
+      run: |
+        mkdir -p ~/.ssh
+          # 将私钥写入文件
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          # 设置正确权限（必须为600，否则SSH会拒绝）
+          chmod 600 ~/.ssh/id_rsa
+          # 配置SSH以自动接受未知主机
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          cat ~/.ssh/id_rsa
+          
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

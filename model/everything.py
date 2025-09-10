@@ -1,66 +1,119 @@
-
 import re
 import os
 import sys
 import random
 import time
+from pathlib import Path
+from typing import Dict, Optional, Union
 
 import requests
 from lxml import html
 from json_hander import JSONHandler
 from download import download_file
+
 # 添加项目根目录到sys.path
-root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if root_path not in sys.path:
-    sys.path.append(root_path)
+ROOT_PATH = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if str(ROOT_PATH) not in sys.path:
+    sys.path.append(str(ROOT_PATH))
+
 from config import browser_headers_list, everything_version_option_list
-def getVersion(url):
+
+# 常量定义
+SOFTWARE_NAME = "Everything"
+SOFTWARE_JSON_PATH = ROOT_PATH / "software.json"
+BASE_DOWNLOAD_URL = "https://www.voidtools.com/"
+VERSION_PATTERN = re.compile(r'\d+\.\d+\.\d+\.\d+')
+
+
+def get_version(url: str) -> Union[str, Dict[str, str]]:
+    """
+    从指定URL获取软件版本信息并检查更新
+
+    Args:
+        url: 要检查的软件官网URL
+
+    Returns:
+        如果成功获取版本号则返回版本字符串，否则返回错误信息字典
+    """
     headers = random.choice(browser_headers_list)
-    response = requests.get(url, headers=headers, timeout=10)
-    response.raise_for_status()
-    if(response.status_code==200):
+
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()  # 抛出HTTP错误状态码异常
+
         print("-" * 50)
         print("🎉获取网站信息成功")
+
         response.encoding = response.apparent_encoding
         tree = html.fromstring(response.text)
-        try:
-            h2_tag = tree.xpath('//h2[@id="dl"]')
-            if h2_tag:
-                tag_text = h2_tag[0].text.strip()
-                version_pattern = re.compile(r'\d+\.\d+\.\d+\.\d+')
-                version_match = version_pattern.search(tag_text)
-                hander = JSONHandler(f"{root_path}/software.json")
-                version = hander.read_version("Everything")
-                print("-" * 50)
-                if version==version_match.group():
-                    print(f"😒无更新,当前版本：{version}")
-                else:
-                    hander.set_version("Everything",version_match.group(),"version")
-                    hander.set_version("Everything",time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()),"updateTime")
-                    print(f"🎉检查到更新,{version}  -->  {version_match.group()}")
-                    # 检查到更新才修改链接
-                    download_urls = get_download_url(version_match.group())
-                    hander.update_url("Everything",download_urls)
-                    print("更新下载链接成功")
-                return version_match.group()
 
-        except Exception as e:
-            return {
-                    'status': 'error',
-                    'message': f'解析HTML时出错: {str(e)}',
-                }
-        
+        # 提取版本信息
+        h2_tag = tree.xpath('//h2[@id="dl"]')
+        if not h2_tag:
+            return {'status': 'error', 'message': '未找到版本信息标签'}
 
-def get_download_url(version):
-    base_url = "https://www.voidtools.com/"
+        tag_text = h2_tag[0].text.strip()
+        version_match = VERSION_PATTERN.search(tag_text)
+
+        if not version_match:
+            return {'status': 'error', 'message': '未找到版本号'}
+
+        current_version = version_match.group()
+        json_handler = JSONHandler(str(SOFTWARE_JSON_PATH))
+        stored_version = json_handler.read_version(SOFTWARE_NAME)
+
+        print("-" * 50)
+
+        # 检查是否有更新
+        if current_version == stored_version:
+            print(f"😒无更新,当前版本：{stored_version}")
+        else:
+            # 更新版本信息
+            json_handler.set_version(SOFTWARE_NAME, current_version, "version")
+            json_handler.set_version(
+                SOFTWARE_NAME,
+                time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()),
+                "updateTime"
+            )
+            print(f"🎉检查到更新,{stored_version}  -->  {current_version}")
+
+            # 更新下载链接
+            download_urls = get_download_url(current_version)
+            json_handler.update_url(SOFTWARE_NAME, download_urls)
+            print("更新下载链接成功")
+
+        return current_version
+
+    except requests.exceptions.RequestException as e:
+        return {'status': 'error', 'message': f'网络请求错误: {str(e)}'}
+    except Exception as e:
+        return {'status': 'error', 'message': f'解析HTML时出错: {str(e)}'}
+
+
+def get_download_url(version: str) -> Dict[str, str]:
+    """
+    生成不同版本的下载链接
+
+    Args:
+        version: 软件版本号
+
+    Returns:
+        包含不同版本下载链接的字典
+    """
     download_urls = {}
+    download_path = ROOT_PATH / "download" / SOFTWARE_NAME / version
+
     for option in everything_version_option_list:
         key = option.replace(".", "_").replace("-", "_")
-        download_urls[key] = f"{base_url}Everything-{version}.{option}"
-        print(download_urls[key])
-        download_file(download_urls[key], f"{root_path}/download/Everything/{version}/")
+        download_url = f"{BASE_DOWNLOAD_URL}Everything-{version}.{option}"
+        download_urls[key] = download_url
+
+        print(download_url)
+        download_file(download_url, str(download_path))
+
     return download_urls
+
 
 if __name__ == '__main__':
     url = "https://www.voidtools.com/"
-    getVersion(url)
+    get_version(url)

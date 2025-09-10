@@ -3,14 +3,14 @@
         "version": "1.4.1.1028",
         "updateTime": "2025-09-10 06:29:04",
         "url": {
-            "x86_msi": "https://www.voidtools.com/Everything-1.4.1.1028.x86.msi",
-            "x64_msi": "https://www.voidtools.com/Everything-1.4.1.1028.x64.msi",
-            "x64_zip": "https://www.voidtools.com/Everything-1.4.1.1028.x64.zip",
-            "x64_Setup_exe": "https://www.voidtools.com/Everything-1.4.1.1028.x64-Setup.exe",
-            "x64_Lite_Setup_exe": "https://www.voidtools.com/Everything-1.4.1.1028.x64.Lite-Setup.exe",
             "x86_zip": "https://www.voidtools.com/Everything-1.4.1.1028.x86.zip",
             "x86_Lite_Setup_exe": "https://www.voidtools.com/Everything-1.4.1.1028.x86.Lite-Setup.exe",
-            "x86_Setup_exe": "https://www.voidtools.com/Everything-1.4.1.1028.x86-Setup.exe"
+            "x64_msi": "https://www.voidtools.com/Everything-1.4.1.1028.x64.msi",
+            "x86_Setup_exe": "https://www.voidtools.com/Everything-1.4.1.1028.x86-Setup.exe",
+            "x86_msi": "https://www.voidtools.com/Everything-1.4.1.1028.x86.msi",
+            "x64_Lite_Setup_exe": "https://www.voidtools.com/Everything-1.4.1.1028.x64.Lite-Setup.exe",
+            "x64_Setup_exe": "https://www.voidtools.com/Everything-1.4.1.1028.x64-Setup.exe",
+            "x64_zip": "https://www.voidtools.com/Everything-1.4.1.1028.x64.zip"
         }
     },
     "Anytxt": {

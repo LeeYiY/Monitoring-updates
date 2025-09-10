@@ -8,6 +8,7 @@ import time
 import requests
 from lxml import html
 from json_hander import JSONHandler
+from download import download_file
 # 添加项目根目录到sys.path
 root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if root_path not in sys.path:
@@ -56,6 +57,8 @@ def get_download_url(version):
     for option in everything_version_option_list:
         key = option.replace(".", "_").replace("-", "_")
         download_urls[key] = f"{base_url}Everything-{version}.{option}"
+        print(download_urls[key])
+        download_file(download_urls[key], f"{root_path}/download/")
     return download_urls
 
 if __name__ == '__main__':

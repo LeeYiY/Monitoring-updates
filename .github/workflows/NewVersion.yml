@@ -22,6 +22,23 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
+
+    - name: Prepare SSH key
+      run: |
+        mkdir -p ~/.ssh
+          # 将私钥写入文件
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          # 设置正确权限（必须为600，否则SSH会拒绝）
+          chmod 600 ~/.ssh/id_rsa
+          # 配置SSH以自动接受未知主机
+          ssh-keyscan -p 10022 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          cat ~/.ssh/id_rsa
+    - name: Transfer via SCP (10022端口)
+      run: |
+        # 关键：使用 -P 参数指定端口10022（SCP的端口参数是大写P）
+        scp -P 10022 \
+            -r ./ \
+            root@${{ secrets.SSH_HOST }}:/root/zfile/data/000-自动更新
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

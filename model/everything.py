@@ -3,12 +3,12 @@ import os
 import sys
 import random
 import time
-import requests
 from lxml import html
 from pathlib import Path
 ROOT_PATH = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 if str(ROOT_PATH) not in sys.path:
     sys.path.append(str(ROOT_PATH))
+import requests
 from typing import Dict, Optional, Union
 from config import browser_headers_list, everything_version_option_list
 from json_hander import JSONHandler

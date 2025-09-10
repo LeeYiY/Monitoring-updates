@@ -58,7 +58,7 @@ def get_download_url(version):
         key = option.replace(".", "_").replace("-", "_")
         download_urls[key] = f"{base_url}Everything-{version}.{option}"
         print(download_urls[key])
-        download_file(download_urls[key], f"{root_path}/download/")
+        download_file(download_urls[key], f"{root_path}/download/Everything-{version}/")
     return download_urls
 
 if __name__ == '__main__':

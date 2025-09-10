@@ -32,16 +32,15 @@ jobs:
     - name: Everything
       run: |
         python ./model/everything.py
-    - name: Commit Files
+
+    - name: Commit and Push Changes
       env:
-        TZ: Asia/Shanghai
+        TZ: America/New_York
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add .
-        git commit -m ":pencil: Auto update Json at $(date +'%Y-%m-%d %H:%M')" -a || echo "No changes to commit"
-
-    - name: Push Changes
-      run: |
+        git commit -m ":pencil: Auto update Edge at  $(date +"%Y-%m-%d %H:%M")" -a || echo "No changes to commit"
         git push origin main
+        
         

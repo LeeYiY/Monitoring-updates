@@ -53,6 +53,7 @@ jobs:
         # 如果目录为空，报错会继续执行
         continue-on-error: true
     - name: Commit and Push Changes
+      if: always()
       env:
         TZ: Asia/Shanghai
       run: |

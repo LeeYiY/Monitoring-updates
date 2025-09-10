@@ -50,9 +50,9 @@ jobs:
         scp -P 10022 \
             -r ./download/* \
             root@${{ secrets.SSH_HOST }}:/root/zfile/data/000-自动更新
+      continue-on-error: true
 
     - name: Commit and Push Changes
-      if: always()
       env:
         TZ: Asia/Shanghai
       run: |

@@ -48,10 +48,9 @@ jobs:
       run: |
         # 关键：使用 -P 参数指定端口10022（SCP的端口参数是大写P）
         scp -P 10022 \
-            -r ./download/ \
+            -r ./download/* \
             root@${{ secrets.SSH_HOST }}:/root/zfile/data/000-自动更新
-        # 如果目录为空，报错会继续执行
-        continue-on-error: true
+
     - name: Commit and Push Changes
       if: always()
       env:

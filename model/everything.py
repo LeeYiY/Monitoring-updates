@@ -4,15 +4,20 @@ import sys
 import random
 import time
 from pathlib import Path
+from typing import Dict, Optional, Union
+
+import requests
+from lxml import html
+from json_hander import JSONHandler
+from download import download_file
+
+# 添加项目根目录到sys.path
 ROOT_PATH = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 if str(ROOT_PATH) not in sys.path:
     sys.path.append(str(ROOT_PATH))
-from lxml import html
-import requests
-from typing import Dict, Optional, Union
+
 from config import browser_headers_list, everything_version_option_list
-from json_hander import JSONHandler
-from download import download_file
+
 # 常量定义
 SOFTWARE_NAME = "Everything"
 SOFTWARE_JSON_PATH = ROOT_PATH / "software.json"

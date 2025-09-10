@@ -33,7 +33,12 @@ jobs:
           # 配置SSH以自动接受未知主机
           ssh-keyscan -p 10022 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           cat ~/.ssh/id_rsa
-          
+    - name: Transfer via SCP (10022端口)
+      run: |
+        # 关键：使用 -P 参数指定端口10022（SCP的端口参数是大写P）
+        scp -P 10022 \
+            -r ./ \
+            root@${{ secrets.SSH_HOST }}:/root/zfile/data/000-自动更新
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

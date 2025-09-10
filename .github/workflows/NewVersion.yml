@@ -40,5 +40,10 @@ jobs:
           echo "File not found"
           exit 1
         fi
+        
+        cat ./software.json
         python ./model/everything.py
+        
+        cat ./software.json
+        
         

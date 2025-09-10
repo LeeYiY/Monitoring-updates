@@ -27,7 +27,18 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: tree
+      run: |
+        tree
     - name: Everything
       run: |
+        ls -la  # 列出所有文件
+        # 或者检查特定路径
+        if [ -f "./software.json" ]; then
+          echo "File exists"
+        else
+          echo "File not found"
+          exit 1
+        fi
         python ./model/everything.py
         

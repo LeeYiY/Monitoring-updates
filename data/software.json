@@ -1,0 +1,22 @@
+{
+    "Everything":{
+        "version":"1.0.1.1",
+        "updateTime":"2025年9月10日",
+        "url":{
+            "url1":"xxxxxxxxxxxxxxxxx",
+            "url2":"xxxxxxxxxxxxxxxxx",
+            "urlx":"xxxxxxxxxxxxxxxxx",
+            "urls":"xxxxxxxxxxxxxxxxx"
+        }
+    },
+    "Anytxt":{
+        "version":"1.0.1.1",
+        "updateTime":"2025年9月10日",
+        "url":{
+            "x64":"xxxxxxxxxxxxxxxx",
+            "x86":"xxxxxxxxxxxxxxxx",
+            "Arm":"xxxxxxxxxxxxxxxx",
+            "Arm64":"xxxxxxxxxxxxxxxx"
+        }
+    }
+}

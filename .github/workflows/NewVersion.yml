@@ -1,14 +1,13 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python application
-
+name: UpdateVersion
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */1 * * *'
 permissions:
   contents: read
 
@@ -32,18 +31,17 @@ jobs:
         tree
     - name: Everything
       run: |
-        ls -la  # 列出所有文件
-        # 或者检查特定路径
-        if [ -f "./software.json" ]; then
-          echo "File exists"
-        else
-          echo "File not found"
-          exit 1
-        fi
-        
-        cat ./software.json
         python ./model/everything.py
-        
-        cat ./software.json
-        
+    - name: Commit Files
+      env:
+        TZ: Asia/Shanghai
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add .
+        git commit -m ":pencil: Auto update Json at $(date +'%Y-%m-%d %H:%M')" -a || echo "No changes to commit"
+
+    - name: Push Changes
+      run: |
+        git push origin main
         

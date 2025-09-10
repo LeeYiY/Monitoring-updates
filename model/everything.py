@@ -28,7 +28,7 @@ def getVersion(url):
                 tag_text = h2_tag[0].text.strip()
                 version_pattern = re.compile(r'\d+\.\d+\.\d+\.\d+')
                 version_match = version_pattern.search(tag_text)
-                hander = JSONHandler("../data/software.json")
+                hander = JSONHandler("../software.json")
                 version = hander.read_version("Everything")
                 print("-" * 50)
                 if version==version_match.group():

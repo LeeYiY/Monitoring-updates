@@ -71,7 +71,7 @@ jobs:
               relative_path=$(dirname "$file" | sed 's|^./Releases/||')
               remote_dirs["$relative_path"]=1
             done
-            echo("======================输出=======================")
+            echo "======================输出======================="
             echo ${!remote_dirs[@]}
             # 创建所有远程目录
             for relative_path in "${!remote_dirs[@]}"; do

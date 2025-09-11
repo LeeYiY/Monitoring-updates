@@ -1,91 +1,111 @@
-name: Cache Releases Files
+name: 下载并通过SCP上传文件
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天UTC时间0点(北京时间早上8点)运行
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 2 * * *'  # 每天凌晨2点运行
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
-  cache-releases:
+  file-transfer:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: 检出代码
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: 准备工作目录
+        run: |
+          mkdir -p ./downloads
+          mkdir -p ./pending_uploads
+          # 创建状态文件记录上传情况
+          touch ./upload_status.log
 
-    - name: Cache Releases files
-      uses: actions/cache@v3
-      with:
-        path: ./Releases  # 要缓存的目录路径
-        key: ${{ runner.os }}-releases-${{ hashFiles('model/github.py') }}
-        restore-keys: |
-          ${{ runner.os }}-releases-
+      - name: 恢复缓存（包括未上传成功的文件）
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./downloads
+            ./pending_uploads
+            ./upload_status.log
+          key: ${{ runner.os }}-scp-cache-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-scp-cache-
 
-    - name: Run main script
-      run: python model/github.py
+      - name: 下载需要传输的文件
+        run: |
+          echo "开始下载文件..."
+          # 示例1: 下载单个文件
+          curl -fSL "https://example.com/data/report-$(date +%Y%m%d).csv" -o ./downloads/report-$(date +%Y%m%d).csv
+          
+          # 示例2: 下载多个文件
+          # curl -fSL "https://example.com/data/file1.zip" -o ./downloads/file1.zip
+          # curl -fSL "https://example.com/data/file2.zip" -o ./downloads/file2.zip
+          
+          echo "下载完成: $(ls -l ./downloads)"
 
-    - name: Upload files via SCP
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SSH_HOST: ${{ secrets.SSH_HOST }}
-        SSH_USER: ${{ secrets.SSH_USER }}
-        REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
-      run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        
-        python -c "
-import os
-import paramiko
-from scp import SCPClient
-from glob import glob
+      - name: 配置SSH客户端
+        run: |
+          # 创建SSH配置目录
+          mkdir -p ~/.ssh
+          # 禁用严格主机密钥检查
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+          # 设置权限
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/config
 
-# 缓存处理逻辑
-cache_file = './releases_cache.txt'
-success_files = []
-failed_files = []
+      - name: 上传文件到远程服务器
+        env:
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: root
+          REMOTE_PORT: 10022
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_PATH: /root/zfile/data/000-自动更新
+        run: |
+          # 写入私钥
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          
+          # 处理Releases目录下的文件
+          if [ -d "./Releases" ]; then
+            echo "=== 开始处理Releases目录下的文件 ==="
+            find ./Releases -type f | while read file; do
+              filename=$(basename "$file")
+              dirpath=$(dirname "$file")
+              echo "准备上传: $filename (来自: $dirpath)"
+              
+              # 使用SCP上传文件
+              scp -P $REMOTE_PORT "$file" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/"
+              
+              if [ $? -eq 0 ]; then
+                echo "$(date): 成功上传: $filename" >> ./upload_status.log
+                rm "$file"
+                echo "已成功上传并删除本地文件: $filename"
+                
+                # 如果目录为空则删除
+                if [ -z "$(ls -A "$dirpath")" ]; then
+                  rmdir "$dirpath"
+                  echo "已删除空目录: $dirpath"
+                fi
+              else
+                echo "$(date): 上传失败: $filename" >> ./upload_status.log
+                mkdir -p ./pending_uploads/$(echo "$dirpath" | sed 's|^./Releases/||')
+                mv "$file" "./pending_uploads/$(echo "$dirpath" | sed 's|^./Releases/||')/"
+                echo "上传失败，已移至待上传目录: $filename"
+              fi
+            done
+          else
+            echo "没有找到Releases目录"
+          fi
 
-# 加载上次失败的记录
-if os.path.exists(cache_file):
-    with open(cache_file, 'r') as f:
-        failed_files = [line.strip() for line in f if line.strip()]
+      - name: 保存缓存（包含未成功上传的文件）
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            ./downloads
+            ./pending_uploads
+            ./upload_status.log
+          key: ${{ runner.os }}-scp-cache-${{ github.run_id }}
 
-# 添加新文件到待上传列表
-for file in glob('./Releases/**/*', recursive=True):
-    if os.path.isfile(file) and file not in failed_files:
-        failed_files.append(file)
-
-# 尝试上传
-ssh = paramiko.SSHClient()
-ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ssh.connect('$SSH_HOST', username='$SSH_USER', key_filename='~/.ssh/id_rsa')
-
-scp = SCPClient(ssh.get_transport())
-
-new_failed_files = []
-for file in failed_files:
-    try:
-        scp.put(file, '$REMOTE_PATH')
-        success_files.append(file)
-        print(f'上传成功: {file}')
-    except Exception as e:
-        new_failed_files.append(file)
-        print(f'上传失败 {file}: {str(e)}')
-
-scp.close()
-ssh.close()
-
-# 更新缓存文件
-with open(cache_file, 'w') as f:
-    f.write('\n'.join(new_failed_files))
-
-# 删除成功上传的文件
-for file in success_files:
-    os.remove(file)
-"
+      - name: 输出上传状态报告
+        run: |
+          echo "=== 本次上传状态报告 ==="
+          cat ./upload_status.log

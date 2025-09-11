@@ -66,38 +66,43 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           
-          # 处理Releases目录下的文件
+           # 处理Releases目录下的文件
           if [ -d "./Releases" ]; then
             echo "=== 开始处理Releases目录下的文件 ==="
             find ./Releases -type f | while read file; do
               filename=$(basename "$file")
-              dirpath=$(dirname "$file")
-              echo "准备上传: $filename (来自: $dirpath)"
+              relative_path=$(dirname "$file" | sed 's|^./Releases/||')
+              remote_path="$REMOTE_BASE_PATH/$relative_path"
+              
+              echo "准备上传: $filename (来自: $relative_path)"
+              
+              # 在远程服务器创建目录
+              ssh -p $REMOTE_PORT "$REMOTE_USER@$REMOTE_HOST" "mkdir -p \"$remote_path\""
               
               # 使用SCP上传文件
-              scp -P $REMOTE_PORT "$file" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/"
+              scp -P $REMOTE_PORT "$file" "$REMOTE_USER@$REMOTE_HOST:$remote_path/"
               
               if [ $? -eq 0 ]; then
-                echo "$(date): 成功上传: $filename" >> ./upload_status.log
+                echo "$(date): 成功上传: $relative_path/$filename" >> ./upload_status.log
                 rm "$file"
                 echo "已成功上传并删除本地文件: $filename"
                 
                 # 如果目录为空则删除
+                dirpath=$(dirname "$file")
                 if [ -z "$(ls -A "$dirpath")" ]; then
                   rmdir "$dirpath"
                   echo "已删除空目录: $dirpath"
                 fi
               else
-                echo "$(date): 上传失败: $filename" >> ./upload_status.log
-                mkdir -p ./pending_uploads/$(echo "$dirpath" | sed 's|^./Releases/||')
-                mv "$file" "./pending_uploads/$(echo "$dirpath" | sed 's|^./Releases/||')/"
+                echo "$(date): 上传失败: $relative_path/$filename" >> ./upload_status.log
+                mkdir -p "./pending_uploads/$relative_path"
+                mv "$file" "./pending_uploads/$relative_path/"
                 echo "上传失败，已移至待上传目录: $filename"
               fi
             done
           else
             echo "没有找到Releases目录"
           fi
-
       - name: 保存缓存（包含未成功上传的文件）
         uses: actions/cache/save@v3
         with:

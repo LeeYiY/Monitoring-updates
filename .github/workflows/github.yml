@@ -72,7 +72,7 @@ jobs:
               remote_dirs["$relative_path"]=1
             done
             
-            # 创建所有需要的远程目录
+            # 创建所有远程目录
             for relative_path in "${!remote_dirs[@]}"; do
               if [ -n "$relative_path" ]; then
                 remote_dir="$REMOTE_PATH/$relative_path"

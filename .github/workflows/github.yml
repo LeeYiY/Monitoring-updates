@@ -65,13 +65,14 @@ jobs:
           # 处理Releases目录下的文件
           if [ -d "./Releases" ]; then
             echo "=== 开始处理Releases目录下的文件 ==="
-            # 收集所有需要创建的远程目录
+            echo "=== 收集所有需要创建的远程目录 ==="
             declare -A remote_dirs
             find ./Releases -type f | while read file; do
               relative_path=$(dirname "$file" | sed 's|^./Releases/||')
               remote_dirs["$relative_path"]=1
             done
-            
+            echo("======================输出=======================")
+            echo ${!remote_dirs[@]}
             # 创建所有远程目录
             for relative_path in "${!remote_dirs[@]}"; do
               if [ -n "$relative_path" ]; then

@@ -68,9 +68,9 @@ jobs:
             echo "=== 开始创建远程目录结构 ==="
             # 收集所有需要创建的远程目录
             find ./Releases -type d | while read dir; do
-              relative_path=$(echo "$dir" | sed 's|^./Releases/||')
+              relative_path=$(echo "$dir" | sed 's|^\./Releases||; s|^/||')  # 修正路径处理
               if [ -n "$relative_path" ]; then
-                remote_dir="$REMOTE_PATH/$relative_path"
+                remote_dir="$REMOTE_PATH$relative_path"  # 直接拼接路径
                 echo "创建远程目录: $remote_dir"
                 ssh -p $REMOTE_PORT "$REMOTE_USER@$REMOTE_HOST" "mkdir -p \"$remote_dir\""
               fi

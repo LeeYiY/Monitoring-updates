@@ -69,7 +69,7 @@ jobs:
             find ./Releases -type f | while read file; do
               filename=$(basename "$file")
               relative_path=$(dirname "$file" | sed 's|^./Releases/||')
-              remote_path="$REMOTE_BASE_PATH/$relative_path"
+              remote_path="$REMOTE_PATH/$relative_path"
               
               echo "准备上传: $filename (来自: $relative_path)"
               

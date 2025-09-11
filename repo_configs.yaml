@@ -11,7 +11,17 @@ repos:
     base_save_dir: "./Releases"
     state_key: "dnSpy"
 
-  - repo_owner: "de4dot"
-    repo_name: "de4dot"
+  - repo_owner: "kingToolbox"
+    repo_name: "WindTerm"
     base_save_dir: "./Releases"
-    state_key: "de4dot"
+    state_key: "WindTerm"
+    
+  - repo_owner: "x64dbg"
+    repo_name: "x64dbg"
+    base_save_dir: "./Releases"
+    state_key: "x64dbg"
+  
+  - repo_owner: "NickeManarin"
+    repo_name: "ScreenToGif"
+    base_save_dir: "./Releases"
+    state_key: "ScreenToGif"

@@ -15,7 +15,6 @@ jobs:
       - name: 准备工作目录
         run: |
           mkdir -p ./Releases
-          mkdir -p ./pending_uploads
           # 创建状态文件记录上传情况
           touch ./upload_status.log
           tree
@@ -25,7 +24,6 @@ jobs:
         with:
           path: |
             ./Releases
-            ./pending_uploads
             ./upload_status.log
           key: ${{ runner.os }}-scp-cache-${{ github.run_id }}
           restore-keys: |
@@ -89,7 +87,6 @@ jobs:
         with:
           path: |
             ./downloads
-            ./pending_uploads
             ./upload_status.log
           key: ${{ runner.os }}-scp-cache-${{ github.run_id }}
 

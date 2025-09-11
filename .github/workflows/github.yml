@@ -59,7 +59,7 @@ jobs:
           REMOTE_USER: root
           REMOTE_PORT: 10022
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_PATH: /root/zfile/data/000-自动更新
+          REMOTE_PATH: /root/zfile/data/000-Github
         run: |
           cat ~/.ssh/id_rsa 
           

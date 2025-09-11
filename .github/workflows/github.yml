@@ -61,6 +61,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_PATH: /root/zfile/data/000-自动更新
         run: |
+          cat ~/.ssh/id_rsa 
+          
            # 处理Releases目录下的文件
           if [ -d "./Releases" ]; then
             echo "=== 开始处理Releases目录下的文件 ==="

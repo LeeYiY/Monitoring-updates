@@ -62,22 +62,26 @@ jobs:
           REMOTE_PATH: /root/zfile/data/000-Github
         run: |
           cat ~/.ssh/id_rsa 
-          
-           # 处理Releases目录下的文件
-                    
           # 处理Releases目录下的文件
           if [ -d "./Releases" ]; then
             echo "=== 开始处理Releases目录下的文件 ==="
-            # 先创建所有需要的远程目录结构
-            find ./Releases -type d | while read dir; do
-              relative_path=$(echo "$dir" | sed 's|^./Releases/||')
+            # 收集所有需要创建的远程目录
+            declare -A remote_dirs
+            find ./Releases -type f | while read file; do
+              relative_path=$(dirname "$file" | sed 's|^./Releases/||')
+              remote_dirs["$relative_path"]=1
+            done
+            
+            # 创建所有需要的远程目录
+            for relative_path in "${!remote_dirs[@]}"; do
               if [ -n "$relative_path" ]; then
                 remote_dir="$REMOTE_PATH/$relative_path"
+                echo "创建远程目录: $remote_dir"
                 ssh -p $REMOTE_PORT "$REMOTE_USER@$REMOTE_HOST" "mkdir -p \"$remote_dir\""
               fi
             done
             
-            # 然后上传所有文件
+            # 上传所有文件
             find ./Releases -type f | while read file; do
               filename=$(basename "$file")
               relative_path=$(dirname "$file" | sed 's|^./Releases/||')
@@ -100,7 +104,7 @@ jobs:
               fi
             done
             
-            # 最后清理空目录
+            # 清理空目录
             find ./Releases -type d -empty -delete
           else
             echo "没有找到Releases目录"

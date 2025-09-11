@@ -42,17 +42,16 @@ jobs:
           python model/github.py
           echo "脚本执行完成，检查Releases目录内容:"
           ls -l ./Releases
-          
-
       - name: 配置SSH客户端
         run: |
-          # 创建SSH配置目录
           mkdir -p ~/.ssh
-          # 禁用严格主机密钥检查
-          echo "StrictHostKeyChecking no" >> ~/.ssh/config
-          # 设置权限
-          chmod 700 ~/.ssh
-          chmod 600 ~/.ssh/config
+            # 将私钥写入文件
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+            # 设置正确权限（必须为600，否则SSH会拒绝）
+            chmod 600 ~/.ssh/id_rsa
+            # 配置SSH以自动接受未知主机
+            ssh-keyscan -p 10022 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+            cat ~/.ssh/id_rsa          
 
       - name: 上传文件到远程服务器
         env:
@@ -62,10 +61,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_PATH: /root/zfile/data/000-自动更新
         run: |
-          # 写入私钥
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          
            # 处理Releases目录下的文件
           if [ -d "./Releases" ]; then
             echo "=== 开始处理Releases目录下的文件 ==="

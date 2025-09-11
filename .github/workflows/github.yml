@@ -14,33 +14,35 @@ jobs:
 
       - name: 准备工作目录
         run: |
-          mkdir -p ./downloads
+          mkdir -p ./Releases
           mkdir -p ./pending_uploads
           # 创建状态文件记录上传情况
           touch ./upload_status.log
+          tree
 
       - name: 恢复缓存（包括未上传成功的文件）
         uses: actions/cache@v3
         with:
           path: |
-            ./downloads
+            ./Releases
             ./pending_uploads
             ./upload_status.log
           key: ${{ runner.os }}-scp-cache-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-scp-cache-
 
-      - name: 下载需要传输的文件
+      - name: 安装Python依赖
         run: |
-          echo "开始下载文件..."
-          # 示例1: 下载单个文件
-          curl -fSL "https://example.com/data/report-$(date +%Y%m%d).csv" -o ./downloads/report-$(date +%Y%m%d).csv
+          python -m pip install --upgrade pip
+          pip install requests pyyaml
+
+      - name: 执行github.py脚本
+        run: |
+          echo "开始执行github.py脚本..."
+          python model/github.py
+          echo "脚本执行完成，检查Releases目录内容:"
+          ls -l ./Releases
           
-          # 示例2: 下载多个文件
-          # curl -fSL "https://example.com/data/file1.zip" -o ./downloads/file1.zip
-          # curl -fSL "https://example.com/data/file2.zip" -o ./downloads/file2.zip
-          
-          echo "下载完成: $(ls -l ./downloads)"
 
       - name: 配置SSH客户端
         run: |

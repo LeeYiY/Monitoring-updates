@@ -1,0 +1,91 @@
+name: Cache Releases Files
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天UTC时间0点(北京时间早上8点)运行
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  cache-releases:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Cache Releases files
+      uses: actions/cache@v3
+      with:
+        path: ./Releases  # 要缓存的目录路径
+        key: ${{ runner.os }}-releases-${{ hashFiles('model/github.py') }}
+        restore-keys: |
+          ${{ runner.os }}-releases-
+
+    - name: Run main script
+      run: python model/github.py
+
+    - name: Upload files via SCP
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_USER: ${{ secrets.SSH_USER }}
+        REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        
+        python -c "
+import os
+import paramiko
+from scp import SCPClient
+from glob import glob
+
+# 缓存处理逻辑
+cache_file = './releases_cache.txt'
+success_files = []
+failed_files = []
+
+# 加载上次失败的记录
+if os.path.exists(cache_file):
+    with open(cache_file, 'r') as f:
+        failed_files = [line.strip() for line in f if line.strip()]
+
+# 添加新文件到待上传列表
+for file in glob('./Releases/**/*', recursive=True):
+    if os.path.isfile(file) and file not in failed_files:
+        failed_files.append(file)
+
+# 尝试上传
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect('$SSH_HOST', username='$SSH_USER', key_filename='~/.ssh/id_rsa')
+
+scp = SCPClient(ssh.get_transport())
+
+new_failed_files = []
+for file in failed_files:
+    try:
+        scp.put(file, '$REMOTE_PATH')
+        success_files.append(file)
+        print(f'上传成功: {file}')
+    except Exception as e:
+        new_failed_files.append(file)
+        print(f'上传失败 {file}: {str(e)}')
+
+scp.close()
+ssh.close()
+
+# 更新缓存文件
+with open(cache_file, 'w') as f:
+    f.write('\n'.join(new_failed_files))
+
+# 删除成功上传的文件
+for file in success_files:
+    os.remove(file)
+"

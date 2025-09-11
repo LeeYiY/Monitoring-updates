@@ -2,7 +2,11 @@ import os
 import requests
 from tqdm import tqdm
 from urllib.parse import urlparse
-
+import warnings
+import urllib3
+from urllib3.exceptions import InsecureRequestWarning
+warnings.filterwarnings("ignore", category=InsecureRequestWarning)
+urllib3.disable_warnings()
 
 def download_file(url, save_dir=None, filename=None, chunk_size=1024 * 1024, timeout=10):
     """
@@ -54,7 +58,9 @@ def download_file(url, save_dir=None, filename=None, chunk_size=1024 * 1024, tim
             headers['Range'] = f'bytes={resume_byte_pos}-'
 
         # 发送请求
-        response = requests.get(url, headers=headers, stream=True, timeout=timeout)
+        session = requests.Session()
+        session.verify = False
+        response = requests.get(url, headers=headers, stream=True, timeout=timeout,verify=False)
         response.raise_for_status()  # 检查请求是否成功
 
         # 获取文件总大小

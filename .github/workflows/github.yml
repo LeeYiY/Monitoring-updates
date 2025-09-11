@@ -1,4 +1,4 @@
-name: 下载并通过SCP上传文件
+name: 下载并通过Rsync单向同步文件
 
 on:
   schedule:
@@ -59,7 +59,7 @@ jobs:
           REMOTE_USER: root
           REMOTE_PORT: 10022
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_PATH: /root/zfile/data/000-Github
+          REMOTE_PATH: /root/zfile/data/000-自动更新
         run: |
           cat ~/.ssh/id_rsa 
           if [ -d "./Releases" ]; then

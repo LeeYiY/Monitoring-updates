@@ -5,11 +5,12 @@ import yaml
 from typing import List, Dict, Optional
 
 # ------------------- 配置文件路径（核心：指定YAML配置文件位置） -------------------
-REPO_CONFIG_YAML: str = "./repo_configs.yaml"  # 单独的YAML仓库配置文件
+REPO_CONFIG_YAML: str = "../repo_configs.yaml"  # 单独的YAML仓库配置文件
 
 # ------------------- 全局配置（所有仓库共用） -------------------
 GITHUB_TOKEN: Optional[str] = ""  # GitHub令牌（无则设为None，避免API请求限制）
 STATE_FILE: str = "./repo_states/downloaded_assets.json"  # 所有仓库共用的下载状态文件
+MAX_VERSIONS: int = 5  # 默认获取最新的5个版本
 
 
 # ------------------- 工具函数（新增：加载YAML仓库配置） -------------------
@@ -83,7 +84,6 @@ def load_all_repos_downloaded_state() -> Dict[str, Dict[int, str]]:
         print(f"⚠️  状态文件损坏，已备份为：{os.path.basename(backup_file)}")
         return {}
 
-
 def save_all_repos_downloaded_state(state: Dict[str, Dict[int, str]]) -> None:
     """保存所有仓库的已下载状态（到JSON状态文件）"""
     # 将整数Key转为字符串（JSON不支持整数Key）
@@ -94,20 +94,25 @@ def save_all_repos_downloaded_state(state: Dict[str, Dict[int, str]]) -> None:
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state_str_key, f, ensure_ascii=False, indent=2)
 
-
-def fetch_repo_all_releases(repo_owner: str, repo_name: str) -> List[Dict]:
-    """获取仓库所有Releases（包含版本信息和附件）"""
+def fetch_repo_releases(repo_owner: str, repo_name: str, max_versions: int = MAX_VERSIONS) -> List[Dict]:
+    """
+    获取仓库的Releases（包含版本信息和附件）
+    :param repo_owner: 仓库所有者
+    :param repo_name: 仓库名称
+    :param max_versions: 最多获取的版本数量，默认为全局配置的MAX_VERSIONS
+    :return: Release列表
+    """
     headers = {"Authorization": f"token {GITHUB_TOKEN}"} if GITHUB_TOKEN else {}
-    all_releases = []
+    releases = []
     page = 1
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/releases"
 
-    while True:
+    while len(releases) < max_versions:
         try:
             response = requests.get(
                 api_url,
                 headers=headers,
-                params={"page": page, "per_page": 100},  # 每页最多100条，减少请求次数
+                params={"page": page, "per_page": min(100, max_versions - len(releases))},  # 每页最多获取所需剩余数量
                 timeout=30
             )
             response.raise_for_status()  # 触发HTTP错误（如403限流、404仓库不存在）
@@ -117,11 +122,13 @@ def fetch_repo_all_releases(repo_owner: str, repo_name: str) -> List[Dict]:
         current_releases = response.json()
         if not current_releases:
             break  # 无更多Releases时终止分页
-        all_releases.extend(current_releases)
+        
+        # 添加当前页的Releases，但不超过max_versions
+        remaining_slots = max_versions - len(releases)
+        releases.extend(current_releases[:remaining_slots])
         page += 1
 
-    return all_releases
-
+    return releases
 
 def sanitize_version(version: str) -> str:
     """清理版本号中的非法字符，确保可以作为目录名"""
@@ -129,7 +136,6 @@ def sanitize_version(version: str) -> str:
     for char in invalid_chars:
         version = version.replace(char, '-')
     return version
-
 
 def download_asset(asset: Dict, save_dir: str) -> bool:
     """下载单个Release附件，返回是否成功"""
@@ -178,7 +184,7 @@ def download_asset(asset: Dict, save_dir: str) -> bool:
 
 
 # ------------------- 核心逻辑：单仓库处理 -------------------
-def process_single_repo(repo_config: Dict, all_states: Dict[str, Dict[int, str]]) -> Dict[str, Dict[int, str]]:
+def process_single_repo(repo_config: Dict, all_states: Dict[str, Dict[int, str]], max_versions: int = MAX_VERSIONS) -> Dict[str, Dict[int, str]]:
     """处理单个仓库的增量下载，返回更新后的全局状态"""
     # 提取当前仓库配置
     repo_owner = repo_config["repo_owner"]
@@ -193,6 +199,7 @@ def process_single_repo(repo_config: Dict, all_states: Dict[str, Dict[int, str]]
     print(f"📦 开始处理仓库：{repo_owner}/{repo_name}")
     print(f"  - 仓库根目录：{os.path.abspath(repo_root_dir)}")
     print(f"  - 状态文件：{os.path.abspath(STATE_FILE)}")
+    print(f"  - 仅获取最新的 {max_versions} 个版本")
     print("=" * 70)
 
     # 1. 初始化仓库根目录
@@ -203,16 +210,16 @@ def process_single_repo(repo_config: Dict, all_states: Dict[str, Dict[int, str]]
     print(f"  ℹ️  已下载文件数量：{len(repo_state)} 个")
 
     try:
-        # 3. 获取仓库所有Releases
-        all_releases = fetch_repo_all_releases(repo_owner, repo_name)
-        if not all_releases:
+        # 3. 获取仓库最新的Releases
+        releases = fetch_repo_releases(repo_owner, repo_name, max_versions)
+        if not releases:
             print(f"  ⚠️  未获取到任何Releases（可能仓库无Release或权限不足）")
             return all_states
-        print(f"  ℹ️  仓库总Releases数量：{len(all_releases)} 个")
+        print(f"  ℹ️  获取到的Releases数量：{len(releases)} 个")
 
         # 4. 筛选未下载的附件（基于状态文件中的Asset ID）
         undownloaded_assets = []
-        for release in all_releases:
+        for release in releases:
             release_version = sanitize_version(release["tag_name"])  # 清理版本号
             for asset in release["assets"]:
                 if asset["id"] not in repo_state:
@@ -254,6 +261,7 @@ def process_single_repo(repo_config: Dict, all_states: Dict[str, Dict[int, str]]
 def main():
     print("=" * 70)
     print(f"🚀 多仓库GitHub Releases增量下载工具（YAML配置版）")
+    print(f"  - 仅获取最新的 {MAX_VERSIONS} 个版本")
     print("=" * 70)
 
     try:

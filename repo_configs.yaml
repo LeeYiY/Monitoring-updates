@@ -20,8 +20,13 @@ repos:
     repo_name: "x64dbg"
     base_save_dir: "./Releases"
     state_key: "x64dbg"
-  
+
   - repo_owner: "NickeManarin"
     repo_name: "ScreenToGif"
     base_save_dir: "./Releases"
     state_key: "ScreenToGif"
+
+  - repo_owner: "notepad-plus-plus"
+    repo_name: "notepad-plus-plus"
+    base_save_dir: "./Releases"
+    state_key: "notepad-plus-plus"

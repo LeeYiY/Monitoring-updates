@@ -3,10 +3,6 @@ name: Clean Workflow Runs
 on:
   workflow_dispatch:
     inputs:
-      days_old:
-        description: '删除多少天前的运行记录 (默认为30天)'
-        required: false
-        default: '30'
       dry_run:
         description: '是否只预览要删除的记录而不实际删除 (true/false)'
         required: false
@@ -23,15 +19,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Clean old workflow runs
+      - name: Clean all workflow runs
         env:
           GH_TOKEN: ${{ secrets.MY_TOKEN }}
-          DAYS_OLD: ${{ github.event.inputs.days_old }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
+          CURRENT_RUN_ID: ${{ github.run_id }}
         run: |
-          # 设置日期格式
-          CUTOFF_DATE=$(date -d "${DAYS_OLD} days ago" --iso-8601=seconds)
-          echo "将删除在 $CUTOFF_DATE 之前的工作流运行记录"
+          echo "准备删除仓库中所有工作流运行记录（包括可能正在执行的工作流）"
           
           # 获取所有工作流
           WORKFLOWS=$(gh api repos/${{ github.repository }}/actions/workflows --jq '.workflows[] | .id')
@@ -40,18 +34,26 @@ jobs:
           for WORKFLOW_ID in $WORKFLOWS; do
             echo "处理工作流 ID: $WORKFLOW_ID"
             
-            # 获取该工作流下的所有运行记录 (移除了不兼容的--per-page参数)
-            RUNS=$(gh api repos/${{ github.repository }}/actions/workflows/$WORKFLOW_ID/runs --paginate --jq ".workflow_runs[] | select(.created_at < \"$CUTOFF_DATE\") | .id")
+            # 获取该工作流下的所有运行记录（不设置日期限制，获取所有记录）
+            RUNS=$(gh api repos/${{ github.repository }}/actions/workflows/$WORKFLOW_ID/runs --paginate --jq '.workflow_runs[] | .id')
             
             # 遍历每个运行记录并删除
             for RUN_ID in $RUNS; do
+              # 跳过当前正在执行的运行记录（GitHub 不允许删除正在运行的工作流）
+              if [ "$RUN_ID" = "$CURRENT_RUN_ID" ]; then
+                echo "跳过当前正在执行的工作流 ID: $RUN_ID"
+                continue
+              fi
+              
               if [ "$DRY_RUN" = "true" ]; then
                 echo "[Dry Run] 将会删除运行记录 ID: $RUN_ID"
               else
                 echo "正在删除运行记录 ID: $RUN_ID"
                 gh api repos/${{ github.repository }}/actions/runs/$RUN_ID -X DELETE
+                # 添加短暂延迟避免触发 API 速率限制
+                sleep 0.5
               fi
             done
           done
 
-          echo "清理完成！"
+          echo "清理完成！注意：GitHub 不允许删除正在运行的工作流，可能有少量记录未被删除。"

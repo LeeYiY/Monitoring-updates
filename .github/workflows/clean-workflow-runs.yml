@@ -25,7 +25,7 @@ jobs:
 
       - name: Clean old workflow runs
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.MY_TOKEN }}
           DAYS_OLD: ${{ github.event.inputs.days_old }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: |

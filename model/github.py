@@ -5,7 +5,7 @@ import yaml
 from typing import List, Dict, Optional
 
 # ------------------- 配置文件路径（核心：指定YAML配置文件位置） -------------------
-REPO_CONFIG_YAML: str = "../repo_configs.yaml"  # 单独的YAML仓库配置文件
+REPO_CONFIG_YAML: str = "./repo_configs.yaml"  # 单独的YAML仓库配置文件
 
 # ------------------- 全局配置（所有仓库共用） -------------------
 GITHUB_TOKEN: Optional[str] = ""  # GitHub令牌（无则设为None，避免API请求限制）

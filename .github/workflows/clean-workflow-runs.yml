@@ -1,0 +1,57 @@
+name: Clean Workflow Runs
+
+on:
+  workflow_dispatch:
+    inputs:
+      days_old:
+        description: '删除多少天前的运行记录 (默认为30天)'
+        required: false
+        default: '30'
+      dry_run:
+        description: '是否只预览要删除的记录而不实际删除 (true/false)'
+        required: false
+        default: 'false'
+
+jobs:
+  clean_runs:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write  # 需要写入权限来删除工作流运行记录
+      contents: read  # 需要读取权限来获取工作流信息
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clean old workflow runs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DAYS_OLD: ${{ github.event.inputs.days_old }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          # 设置日期格式
+          CUTOFF_DATE=$(date -d "${DAYS_OLD} days ago" --iso-8601=seconds)
+          echo "将删除在 $CUTOFF_DATE 之前的工作流运行记录"
+          
+          # 获取所有工作流
+          WORKFLOWS=$(gh api repos/${{ github.repository }}/actions/workflows --jq '.workflows[] | .id')
+          
+          # 遍历每个工作流
+          for WORKFLOW_ID in $WORKFLOWS; do
+            echo "处理工作流 ID: $WORKFLOW_ID"
+            
+            # 获取该工作流下的所有运行记录 (最多1000条)
+            RUNS=$(gh api repos/${{ github.repository }}/actions/workflows/$WORKFLOW_ID/runs --paginate --per-page=100 --jq ".workflow_runs[] | select(.created_at < \"$CUTOFF_DATE\") | .id")
+            
+            # 遍历每个运行记录并删除
+            for RUN_ID in $RUNS; do
+              if [ "$DRY_RUN" = "true" ]; then
+                echo "[Dry Run] 将会删除运行记录 ID: $RUN_ID"
+              else
+                echo "正在删除运行记录 ID: $RUN_ID"
+                gh api repos/${{ github.repository }}/actions/runs/$RUN_ID -X DELETE
+              fi
+            done
+          done
+
+          echo "清理完成！"

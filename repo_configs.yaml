@@ -30,3 +30,8 @@ repos:
     repo_name: "notepad-plus-plus"
     base_save_dir: "./Releases"
     state_key: "notepad-plus-plus"
+
+  - repo_owner: "o0HalfLife0o"
+    repo_name: "nTVBoxOSC"
+    base_save_dir: "./Releases"
+    state_key: "TVBox_takagen99"

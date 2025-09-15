@@ -1,3 +1,5 @@
+import base64
+
 import requests
 import os
 import json
@@ -255,6 +257,44 @@ def process_single_repo(repo_config: Dict, all_states: Dict[str, Dict[int, str]]
         print(f"  ❌ 仓库处理失败：{str(e)}")
 
     return all_states
+
+
+def get_github_readme_content(repo_config: Dict):
+    # 1. 构造 GitHub API 请求 URL（获取 README 信息）
+    repo_owner = repo_config["repo_owner"]
+    repo_name = repo_config["repo_name"]
+    base_save_dir = repo_config["base_save_dir"]
+    repo_root_dir = os.path.join(base_save_dir, repo_name)
+    api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/readme"
+
+    try:
+        # 2. 发送 GET 请求（无需认证，公开仓库可直接访问）
+        response = requests.get(api_url)
+        # 检查请求是否成功（200 表示成功）
+        response.raise_for_status()
+
+        # 3. 解析 JSON 响应，提取 download_url 和 Base64 编码的内容
+        readme_info = response.json()
+        download_url = readme_info.get("download_url")  # 提取下载链接
+        base64_content = readme_info.get("content")  # 提取 Base64 编码的内容
+
+        if not download_url or not base64_content:
+            print("Error: 未找到 download_url 或 README 内容")
+            return None
+
+        # 4. 解码 Base64 内容（注意去除换行符，Base64 编码不允许多余换行）
+        base64_content_clean = base64_content.replace("\n", "")  # 清理编码内容
+        decoded_content = base64.b64decode(base64_content_clean).decode("utf-8")  # 解码为 UTF-8 文本
+        # （可选）将内容写入本地文件
+        with open(f"{repo_root_dir}/ReadMe.md", "w", encoding="utf-8") as f:
+            f.write(decoded_content)
+        print(f"README.md 已保存到本地：{repo_root_dir}/ReadMe.md")
+
+        return decoded_content
+
+    except requests.exceptions.RequestException as e:
+        print(f"请求失败：{e}")
+        return None
 
 
 # ------------------- 主函数：批量处理所有仓库 -------------------

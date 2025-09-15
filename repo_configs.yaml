@@ -40,3 +40,9 @@ repos:
     repo_name: "fort"
     base_save_dir: "./Releases"
     state_key: "Fort_Firewall"
+
+
+  - repo_owner: "Ventoy"
+    repo_name: "Ventoy"
+    base_save_dir: "./Releases"
+    state_key: "Ventoy"

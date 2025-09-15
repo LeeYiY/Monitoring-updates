@@ -35,3 +35,8 @@ repos:
     repo_name: "TVBoxOSC"
     base_save_dir: "./Releases"
     state_key: "TVBox_takagen99"
+
+  - repo_owner: "tnodir"
+    repo_name: "fort"
+    base_save_dir: "./Releases"
+    state_key: "Fort_Firewall"

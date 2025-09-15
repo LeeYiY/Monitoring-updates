@@ -318,12 +318,11 @@ def main():
     for repo_idx, repo_config in enumerate(REPOS_CONFIG, 1):
         print(f"\n【{repo_idx}/{len(REPOS_CONFIG)}】")
         all_states = process_single_repo(repo_config, all_states)
+        ## 打印ReadME内容
+        get_github_readme_content(repo_config)
         # 每处理完一个仓库保存一次状态，避免意外丢失
         save_all_repos_downloaded_state(all_states)
 
-
-    ## 打印ReadME内容
-    get_github_readme_content(REPOS_CONFIG[0])
 
     # 4. 打印最终结果
     print(f"\n" + "=" * 70)

@@ -46,3 +46,8 @@ repos:
     repo_name: "Ventoy"
     base_save_dir: "./Releases"
     state_key: "Ventoy"
+
+  - repo_owner: "BlackINT3"
+    repo_name: "OpenArk"
+    base_save_dir: "./Releases"
+    state_key: "OpenArk"

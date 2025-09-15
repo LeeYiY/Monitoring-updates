@@ -288,7 +288,7 @@ def get_github_readme_content(repo_config: Dict):
         # （可选）将内容写入本地文件
         with open(f"{repo_root_dir}/ReadMe.md", "w", encoding="utf-8") as f:
             f.write(decoded_content)
-        print(f"README.md 已保存到本地：{repo_root_dir}/ReadMe.md")
+            print(f"README.md 已保存到本地：{repo_root_dir}/ReadMe.md")
 
         return decoded_content
 
@@ -303,7 +303,6 @@ def main():
     print(f"🚀 多仓库GitHub Releases增量下载工具（YAML配置版）")
     print(f"  - 仅获取最新的 {MAX_VERSIONS} 个版本")
     print("=" * 70)
-
     try:
         # 1. 加载YAML仓库配置
         REPOS_CONFIG = load_repo_configs_from_yaml(REPO_CONFIG_YAML)
@@ -321,6 +320,10 @@ def main():
         all_states = process_single_repo(repo_config, all_states)
         # 每处理完一个仓库保存一次状态，避免意外丢失
         save_all_repos_downloaded_state(all_states)
+
+
+    ## 打印ReadME内容
+    get_github_readme_content(REPOS_CONFIG[0])
 
     # 4. 打印最终结果
     print(f"\n" + "=" * 70)

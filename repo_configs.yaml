@@ -57,3 +57,8 @@ repos:
     repo_name: "jadx"
     base_save_dir: "./Releases"
     state_key: "jadx"
+    
+  - repo_owner: "opentrack"
+    repo_name: "opentrack"
+    base_save_dir: "./Releases"
+    state_key: "opentrack"

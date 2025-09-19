@@ -58,6 +58,7 @@ jobs:
           REMOTE_PATH: /root/zfile/data/000-自动更新
         run: |
           cat ~/.ssh/id_rsa 
+          tree
           if [ -d "./Releases" ]; then
             echo "=== 开始同步Releases目录 ==="
             
@@ -71,17 +72,16 @@ jobs:
               ./Releases/ "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/"
             
             # 检查同步结果
-            if [ $? -eq 0 ]; then
-              echo "$(date): 成功同步Releases目录"
-              # 删除空目录
-              find ./Releases -type d -empty -delete
-            else
-              echo "$(date): 同步Releases目录失败"
-            fi
+            # if [ $? -eq 0 ]; then
+            #   echo "$(date): 成功同步Releases目录"
+            #   # 删除空目录
+            #   find ./Releases -type d -empty -delete
+            # else
+            #   echo "$(date): 同步Releases目录失败"
+            # fi
           else
             echo "没有找到Releases目录"
           fi
-          tree
       - name: 保存缓存（包含未成功上传的文件）
         uses: actions/cache/save@v3
         with:

@@ -1,0 +1,165 @@
+======================================================================
+🚀 多仓库GitHub Releases增量下载工具（YAML配置版）
+  - 仅获取最新的 5 个版本
+======================================================================
+ℹ️  从YAML加载配置成功，共 12 个仓库
+
+【1/12】
+
+======================================================================
+📦 开始处理仓库：SychicBoy/NETReactorSlayer
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/NETReactorSlayer
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：29 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/NETReactorSlayer/ReadMe.md
+
+【2/12】
+
+======================================================================
+📦 开始处理仓库：dnSpy/dnSpy
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/dnSpy
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：3 个
+  ℹ️  获取到的Releases数量：1 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/dnSpy/ReadMe.md
+
+【3/12】
+
+======================================================================
+📦 开始处理仓库：kingToolbox/WindTerm
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/WindTerm
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：64 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/WindTerm/ReadMe.md
+
+【4/12】
+
+======================================================================
+📦 开始处理仓库：x64dbg/x64dbg
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/x64dbg
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：10 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/x64dbg/ReadMe.md
+
+【5/12】
+
+======================================================================
+📦 开始处理仓库：NickeManarin/ScreenToGif
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/ScreenToGif
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：387 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/ScreenToGif/ReadMe.md
+
+【6/12】
+
+======================================================================
+📦 开始处理仓库：notepad-plus-plus/notepad-plus-plus
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/notepad-plus-plus
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：104 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/notepad-plus-plus/ReadMe.md
+
+【7/12】
+
+======================================================================
+📦 开始处理仓库：o0HalfLife0o/TVBoxOSC
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/TVBoxOSC
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：39 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/TVBoxOSC/ReadMe.md
+
+【8/12】
+
+======================================================================
+📦 开始处理仓库：tnodir/fort
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/fort
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：30 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/fort/ReadMe.md
+
+【9/12】
+
+======================================================================
+📦 开始处理仓库：Ventoy/Ventoy
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/Ventoy
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：15 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/Ventoy/ReadMe.md
+
+【10/12】
+
+======================================================================
+📦 开始处理仓库：BlackINT3/OpenArk
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/OpenArk
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：15 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/OpenArk/ReadMe.md
+
+【11/12】
+
+======================================================================
+📦 开始处理仓库：skylot/jadx
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/jadx
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：15 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/jadx/ReadMe.md
+
+【12/12】
+
+======================================================================
+📦 开始处理仓库：opentrack/opentrack
+  - 仓库根目录：/home/runner/work/Monitoring-updates/Monitoring-updates/Releases/opentrack
+  - 状态文件：/home/runner/work/Monitoring-updates/Monitoring-updates/repo_states/downloaded_assets.json
+  - 仅获取最新的 5 个版本
+======================================================================
+  ℹ️  已下载文件数量：18 个
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/opentrack/ReadMe.md
+
+======================================================================
+✅ 所有仓库处理完毕！
+======================================================================

@@ -23,8 +23,6 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ./Releases
-            ./upload_status.log
           key: ${{ runner.os }}-scp-cache-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-scp-cache-
@@ -86,8 +84,7 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: |
-            ./downloads
-            ./upload_status.log
+            ./Releases
           key: ${{ runner.os }}-scp-cache-${{ github.run_id }}
 
       - name: 输出上传状态报告

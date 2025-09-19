@@ -81,6 +81,7 @@ jobs:
           else
             echo "没有找到Releases目录"
           fi
+          tree
       - name: 保存缓存（包含未成功上传的文件）
         uses: actions/cache/save@v3
         with:

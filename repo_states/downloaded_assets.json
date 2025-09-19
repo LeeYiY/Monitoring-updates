@@ -731,5 +731,25 @@
     "104545494": "jadx-1.4.7.zip",
     "104545477": "jadx-gui-1.4.7-no-jre-win.exe",
     "104549872": "jadx-gui-1.4.7-with-jre-win.zip"
+  },
+  "opentrack": {
+    "175555979": "opentrack-2024.1.1-win32-dbginfo.7z",
+    "175555910": "opentrack-2024.1.1-win32-portable.7z",
+    "175555892": "opentrack-2024.1.1-win32-setup.exe",
+    "175555882": "opentrack-2024.1.1-win64-dbginfo.7z",
+    "175555828": "opentrack-2024.1.1-win64-portable.7z",
+    "175555753": "opentrack-2024.1.1-win64-setup.exe",
+    "134187050": "opentrack-2023.3.0-dbginfo.7z",
+    "134186950": "opentrack-2023.3.0-win32-portable.7z",
+    "134187001": "opentrack-2023.3.0-win32-setup.exe",
+    "122975075": "opentrack-2023.2.0-win32-dbginfo.7z",
+    "122974948": "opentrack-2023.2.0-win32-portable.7z",
+    "122974993": "opentrack-2023.2.0-win32-setup.exe",
+    "100269520": "opentrack-2023.1.0-win32-dbginfo.7z",
+    "100269612": "opentrack-2023.1.0-win32-portable.7z",
+    "100269754": "opentrack-2023.1.0-win32-setup.exe",
+    "81582845": "opentrack-2022.3.2-dbginfo.7z",
+    "81582947": "opentrack-2022.3.2-win32-portable.7z",
+    "81583032": "opentrack-2022.3.2-win32-setup.exe"
   }
 }

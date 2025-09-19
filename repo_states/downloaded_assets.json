@@ -751,5 +751,39 @@
     "81582845": "opentrack-2022.3.2-dbginfo.7z",
     "81582947": "opentrack-2022.3.2-win32-portable.7z",
     "81583032": "opentrack-2022.3.2-win32-setup.exe"
+  },
+  "chrome_installer": {
+    "294450638": "arm64_140.0.7339.186_chrome_installer_uncompressed.exe",
+    "294450640": "x64_140.0.7339.186_chrome_installer_uncompressed.exe",
+    "294450639": "x86_140.0.7339.186_chrome_installer_uncompressed.exe",
+    "291476748": "arm64_140.0.7339.128_chrome_installer_uncompressed.exe",
+    "291476751": "x64_140.0.7339.128_chrome_installer_uncompressed.exe",
+    "291476749": "x86_140.0.7339.128_chrome_installer_uncompressed.exe",
+    "288943373": "arm64_140.0.7339.81_chrome_installer_uncompressed.exe",
+    "288943372": "x64_140.0.7339.81_chrome_installer_uncompressed.exe",
+    "288943374": "x86_140.0.7339.81_chrome_installer_uncompressed.exe",
+    "286476575": "arm64_139.0.7258.155_chrome_installer_uncompressed.exe",
+    "286476573": "x64_139.0.7258.155_chrome_installer_uncompressed.exe",
+    "286476574": "x86_139.0.7258.155_chrome_installer_uncompressed.exe",
+    "284171237": "arm64_139.0.7258.139_chrome_installer_uncompressed.exe",
+    "284171238": "x64_139.0.7258.139_chrome_installer_uncompressed.exe",
+    "284171236": "x86_139.0.7258.139_chrome_installer_uncompressed.exe"
+  },
+  "edge_installer": {
+    "294895420": "MicrosoftEdge_ARM64_140.0.3485.81.exe",
+    "294895421": "MicrosoftEdge_X64_140.0.3485.81.exe",
+    "294895419": "MicrosoftEdge_X86_140.0.3485.81.exe",
+    "292292202": "MicrosoftEdge_ARM64_140.0.3485.66.exe",
+    "292292201": "MicrosoftEdge_X64_140.0.3485.66.exe",
+    "292292200": "MicrosoftEdge_X86_140.0.3485.66.exe",
+    "290138572": "MicrosoftEdge_ARM64_140.0.3485.54.exe",
+    "290138571": "MicrosoftEdge_X64_140.0.3485.54.exe",
+    "290138570": "MicrosoftEdge_X86_140.0.3485.54.exe",
+    "287252427": "MicrosoftEdge_ARM64_139.0.3405.125.exe",
+    "287252424": "MicrosoftEdge_X64_139.0.3405.125.exe",
+    "287252423": "MicrosoftEdge_X86_139.0.3405.125.exe",
+    "286133752": "MicrosoftEdge_ARM64_139.0.3405.119.exe",
+    "286133754": "MicrosoftEdge_X64_139.0.3405.119.exe",
+    "286133751": "MicrosoftEdge_X86_139.0.3405.119.exe"
   }
 }

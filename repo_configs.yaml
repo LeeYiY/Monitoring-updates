@@ -10,6 +10,16 @@ repos:
     repo_name: "dnSpy"
     base_save_dir: "./Releases"
     state_key: "dnSpy"
+    
+  - repo_owner: "LeeYiY"
+    repo_name: "chrome_installer"
+    base_save_dir: "./Releases"
+    state_key: "chrome_installer"
+    
+  - repo_owner: "LeeYiY"
+    repo_name: "edge_installer"
+    base_save_dir: "./Releases"
+    state_key: "edge_installer"
 
   - repo_owner: "kingToolbox"
     repo_name: "WindTerm"

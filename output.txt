@@ -52,8 +52,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：15 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/LeeYiY/edge_installer/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/LeeYiY/edge_installer/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/edge_installer/ReadMe.md
 
 【5/14】
 
@@ -64,8 +65,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：64 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/kingToolbox/WindTerm/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/kingToolbox/WindTerm/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/WindTerm/ReadMe.md
 
 【6/14】
 
@@ -76,8 +78,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：10 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/x64dbg/x64dbg/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/x64dbg/x64dbg/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/x64dbg/ReadMe.md
 
 【7/14】
 
@@ -88,8 +91,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：387 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/NickeManarin/ScreenToGif/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/NickeManarin/ScreenToGif/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/ScreenToGif/ReadMe.md
 
 【8/14】
 
@@ -100,8 +104,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：104 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/notepad-plus-plus/notepad-plus-plus/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/notepad-plus-plus/notepad-plus-plus/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/notepad-plus-plus/ReadMe.md
 
 【9/14】
 
@@ -112,8 +117,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：39 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/o0HalfLife0o/TVBoxOSC/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/o0HalfLife0o/TVBoxOSC/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/TVBoxOSC/ReadMe.md
 
 【10/14】
 
@@ -124,8 +130,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：30 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/tnodir/fort/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/tnodir/fort/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/fort/ReadMe.md
 
 【11/14】
 
@@ -136,8 +143,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：15 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/Ventoy/Ventoy/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/Ventoy/Ventoy/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/Ventoy/ReadMe.md
 
 【12/14】
 
@@ -148,8 +156,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：15 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/BlackINT3/OpenArk/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/BlackINT3/OpenArk/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/OpenArk/ReadMe.md
 
 【13/14】
 
@@ -160,8 +169,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：15 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/skylot/jadx/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/skylot/jadx/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/jadx/ReadMe.md
 
 【14/14】
 
@@ -172,8 +182,9 @@ README.md 已保存到本地：./Releases/chrome_installer/ReadMe.md
   - 仅获取最新的 5 个版本
 ======================================================================
   ℹ️  已下载文件数量：18 个
-  ❌ 仓库处理失败：GitHub API请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/opentrack/opentrack/releases?page=1&per_page=5
-请求失败：403 Client Error: rate limit exceeded for url: https://api.github.com/repos/opentrack/opentrack/readme
+  ℹ️  获取到的Releases数量：5 个
+  🎉 无新文件需要更新，所有附件均已下载
+README.md 已保存到本地：./Releases/opentrack/ReadMe.md
 
 ======================================================================
 ✅ 所有仓库处理完毕！

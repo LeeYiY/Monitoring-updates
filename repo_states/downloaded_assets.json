@@ -767,7 +767,10 @@
     "286476574": "x86_139.0.7258.155_chrome_installer_uncompressed.exe",
     "284171237": "arm64_139.0.7258.139_chrome_installer_uncompressed.exe",
     "284171238": "x64_139.0.7258.139_chrome_installer_uncompressed.exe",
-    "284171236": "x86_139.0.7258.139_chrome_installer_uncompressed.exe"
+    "284171236": "x86_139.0.7258.139_chrome_installer_uncompressed.exe",
+    "296485962": "arm64_140.0.7339.208_chrome_installer_uncompressed.exe",
+    "296485963": "x64_140.0.7339.208_chrome_installer_uncompressed.exe",
+    "296485964": "x86_140.0.7339.208_chrome_installer_uncompressed.exe"
   },
   "edge_installer": {
     "294895420": "MicrosoftEdge_ARM64_140.0.3485.81.exe",

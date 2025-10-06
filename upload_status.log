@@ -630,3 +630,50 @@
 2025/10/05 03:11:22 [2219] <f..t...... x64dbg/ReadMe.md
 2025/10/05 03:11:23 [2219] sent 2,313 bytes  received 1,324 bytes  661.27 bytes/sec
 2025/10/05 03:11:23 [2219] total size is 99,051  speedup is 27.23
+2025/10/06 03:06:54 [2186] building file list
+2025/10/06 03:06:54 [2186] .d..t...... ./
+2025/10/06 03:06:54 [2186] .d..t...... NETReactorSlayer/
+2025/10/06 03:06:54 [2186] <f..t...... NETReactorSlayer/ReadMe.md
+2025/10/06 03:06:54 [2186] .d..t...... OpenArk/
+2025/10/06 03:06:54 [2186] .d..t...... ScreenToGif/
+2025/10/06 03:06:54 [2186] <f..t...... ScreenToGif/ReadMe.md
+2025/10/06 03:06:54 [2186] cd+++++++++ ScreenToGif/2.42.1/
+2025/10/06 03:06:56 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Light.Portable.Arm64.zip
+2025/10/06 03:06:57 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Light.Portable.x64.zip
+2025/10/06 03:06:58 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Light.Portable.x86.zip
+2025/10/06 03:06:59 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Light.Setup.Arm64.msi
+2025/10/06 03:07:00 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Light.Setup.x64.msi
+2025/10/06 03:07:00 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Light.Setup.x86.msi
+2025/10/06 03:07:09 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Package.arm64.msix
+2025/10/06 03:07:17 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Package.x64.msix
+2025/10/06 03:07:25 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Package.x86.msix
+2025/10/06 03:07:33 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Portable.Arm64.zip
+2025/10/06 03:07:41 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Portable.x64.zip
+2025/10/06 03:07:49 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Portable.x86.zip
+2025/10/06 03:07:57 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Setup.Arm64.msi
+2025/10/06 03:08:06 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Setup.x64.msi
+2025/10/06 03:08:14 [2186] <f+++++++++ ScreenToGif/2.42.1/ScreenToGif.2.42.1.Setup.x86.msi
+2025/10/06 03:08:14 [2186] .d..t...... TVBoxOSC/
+2025/10/06 03:08:14 [2186] <f..t...... TVBoxOSC/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... Ventoy/
+2025/10/06 03:08:14 [2186] <f..t...... Ventoy/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... WindTerm/
+2025/10/06 03:08:14 [2186] <f..t...... WindTerm/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... chrome_installer/
+2025/10/06 03:08:14 [2186] <f.st...... chrome_installer/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... dnSpy/
+2025/10/06 03:08:14 [2186] <f..t...... dnSpy/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... edge_installer/
+2025/10/06 03:08:14 [2186] <f..t...... edge_installer/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... fort/
+2025/10/06 03:08:14 [2186] <f..t...... fort/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... jadx/
+2025/10/06 03:08:14 [2186] <f..t...... jadx/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... notepad-plus-plus/
+2025/10/06 03:08:14 [2186] <f..t...... notepad-plus-plus/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... opentrack/
+2025/10/06 03:08:14 [2186] <f..t...... opentrack/ReadMe.md
+2025/10/06 03:08:14 [2186] .d..t...... x64dbg/
+2025/10/06 03:08:14 [2186] <f..t...... x64dbg/ReadMe.md
+2025/10/06 03:08:15 [2186] sent 665,414,423 bytes  received 1,797 bytes  7,874,748.17 bytes/sec
+2025/10/06 03:08:15 [2186] total size is 671,899,292  speedup is 1.01

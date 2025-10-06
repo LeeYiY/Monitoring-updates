@@ -479,7 +479,22 @@
     "298246378": "ScreenToGif.2.42.Portable.x86.zip",
     "298246393": "ScreenToGif.2.42.Setup.Arm64.msi",
     "298246432": "ScreenToGif.2.42.Setup.x64.msi",
-    "298246450": "ScreenToGif.2.42.Setup.x86.msi"
+    "298246450": "ScreenToGif.2.42.Setup.x86.msi",
+    "300839449": "ScreenToGif.2.42.1.Light.Portable.Arm64.zip",
+    "300839459": "ScreenToGif.2.42.1.Light.Portable.x64.zip",
+    "300839157": "ScreenToGif.2.42.1.Light.Portable.x86.zip",
+    "300839165": "ScreenToGif.2.42.1.Light.Setup.Arm64.msi",
+    "300839171": "ScreenToGif.2.42.1.Light.Setup.x64.msi",
+    "300839177": "ScreenToGif.2.42.1.Light.Setup.x86.msi",
+    "300839179": "ScreenToGif.2.42.1.Package.arm64.msix",
+    "300839198": "ScreenToGif.2.42.1.Package.x64.msix",
+    "300839230": "ScreenToGif.2.42.1.Package.x86.msix",
+    "300839250": "ScreenToGif.2.42.1.Portable.Arm64.zip",
+    "300839268": "ScreenToGif.2.42.1.Portable.x64.zip",
+    "300839317": "ScreenToGif.2.42.1.Portable.x86.zip",
+    "300839338": "ScreenToGif.2.42.1.Setup.Arm64.msi",
+    "300839388": "ScreenToGif.2.42.1.Setup.x64.msi",
+    "300839412": "ScreenToGif.2.42.1.Setup.x86.msi"
   },
   "NETReactorSlayer": {
     "87912646": "NETReactorSlayer-windows.zip",

@@ -741,7 +741,13 @@
     "299346401": "FortFirewall-3.19.8-windows10-arm64.exe",
     "299346432": "FortFirewall-3.19.8-windows10-arm64.exe.sig",
     "299346435": "FortFirewall-3.19.8-windows10-x86_64.exe",
-    "299346458": "FortFirewall-3.19.8-windows10-x86_64.exe.sig"
+    "299346458": "FortFirewall-3.19.8-windows10-x86_64.exe.sig",
+    "303000218": "FortFirewall-3.19.9-windows-x86.exe",
+    "303000223": "FortFirewall-3.19.9-windows-x86.exe.sig",
+    "303000201": "FortFirewall-3.19.9-windows10-arm64.exe",
+    "303000211": "FortFirewall-3.19.9-windows10-arm64.exe.sig",
+    "303000212": "FortFirewall-3.19.9-windows10-x86_64.exe",
+    "303000217": "FortFirewall-3.19.9-windows10-x86_64.exe.sig"
   },
   "Ventoy": {
     "283721508": "ventoy-1.1.07-linux.tar.gz",

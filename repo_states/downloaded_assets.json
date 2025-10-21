@@ -662,7 +662,33 @@
     "301503278": "npp.8.8.6.portable.x64.zip",
     "301503288": "npp.8.8.6.portable.x64.zip.sig",
     "301503290": "npp.8.8.6.portable.zip",
-    "301503296": "npp.8.8.6.portable.zip.sig"
+    "301503296": "npp.8.8.6.portable.zip.sig",
+    "306518797": "npp.8.8.7.checksums.sha256",
+    "306518799": "npp.8.8.7.checksums.sha256.sig",
+    "306518827": "npp.8.8.7.Installer.arm64.exe",
+    "306518801": "npp.8.8.7.Installer.arm64.exe.sig",
+    "306518839": "npp.8.8.7.Installer.exe",
+    "306518803": "npp.8.8.7.Installer.exe.sig",
+    "306518845": "npp.8.8.7.Installer.x64.exe",
+    "306518807": "npp.8.8.7.Installer.x64.exe.sig",
+    "306518848": "npp.8.8.7.portable.7z",
+    "306518809": "npp.8.8.7.portable.7z.sig",
+    "306518855": "npp.8.8.7.portable.arm64.7z",
+    "306518811": "npp.8.8.7.portable.arm64.7z.sig",
+    "306518859": "npp.8.8.7.portable.arm64.zip",
+    "306518812": "npp.8.8.7.portable.arm64.zip.sig",
+    "306518863": "npp.8.8.7.portable.minimalist.7z",
+    "306518815": "npp.8.8.7.portable.minimalist.7z.sig",
+    "306518867": "npp.8.8.7.portable.minimalist.arm64.7z",
+    "306518817": "npp.8.8.7.portable.minimalist.arm64.7z.sig",
+    "306518869": "npp.8.8.7.portable.minimalist.x64.7z",
+    "306518819": "npp.8.8.7.portable.minimalist.x64.7z.sig",
+    "306518874": "npp.8.8.7.portable.x64.7z",
+    "306518820": "npp.8.8.7.portable.x64.7z.sig",
+    "306518878": "npp.8.8.7.portable.x64.zip",
+    "306518823": "npp.8.8.7.portable.x64.zip.sig",
+    "306518785": "npp.8.8.7.portable.zip",
+    "306518824": "npp.8.8.7.portable.zip.sig"
   },
   "TVBox_takagen99": {
     "270386543": "sourceCode-9fcd861.tar.xz",
@@ -885,6 +911,9 @@
     "302452550": "MicrosoftEdge_X86_141.0.3537.71.exe",
     "305381378": "MicrosoftEdge_ARM64_141.0.3537.85.exe",
     "305381379": "MicrosoftEdge_X64_141.0.3537.85.exe",
-    "305381377": "MicrosoftEdge_X86_141.0.3537.85.exe"
+    "305381377": "MicrosoftEdge_X86_141.0.3537.85.exe",
+    "306583602": "MicrosoftEdge_ARM64_141.0.3537.92.exe",
+    "306583599": "MicrosoftEdge_X64_141.0.3537.92.exe",
+    "306583598": "MicrosoftEdge_X86_141.0.3537.92.exe"
   }
 }

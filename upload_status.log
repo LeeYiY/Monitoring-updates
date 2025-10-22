@@ -1232,3 +1232,38 @@
 2025/10/21 03:12:18 [2124] <f..t...... x64dbg/ReadMe.md
 2025/10/21 03:12:19 [2124] sent 616,678,392 bytes  received 2,163 bytes  7,297,994.73 bytes/sec
 2025/10/21 03:12:19 [2124] total size is 617,023,007  speedup is 1.00
+2025/10/22 03:15:56 [2266] building file list
+2025/10/22 03:15:56 [2266] .d..t...... ./
+2025/10/22 03:15:56 [2266] .d..t...... NETReactorSlayer/
+2025/10/22 03:15:56 [2266] <f..t...... NETReactorSlayer/ReadMe.md
+2025/10/22 03:15:56 [2266] .d..t...... OpenArk/
+2025/10/22 03:15:56 [2266] .d..t...... ScreenToGif/
+2025/10/22 03:15:56 [2266] <f..t...... ScreenToGif/ReadMe.md
+2025/10/22 03:15:56 [2266] .d..t...... TVBoxOSC/
+2025/10/22 03:15:56 [2266] <f..t...... TVBoxOSC/ReadMe.md
+2025/10/22 03:15:56 [2266] .d..t...... Ventoy/
+2025/10/22 03:15:56 [2266] <f..t...... Ventoy/ReadMe.md
+2025/10/22 03:15:56 [2266] .d..t...... WindTerm/
+2025/10/22 03:15:56 [2266] <f..t...... WindTerm/ReadMe.md
+2025/10/22 03:15:56 [2266] .d..t...... chrome_installer/
+2025/10/22 03:15:56 [2266] <f.st...... chrome_installer/ReadMe.md
+2025/10/22 03:15:56 [2266] cd+++++++++ chrome_installer/141.0.7390.123/
+2025/10/22 03:16:21 [2266] <f+++++++++ chrome_installer/141.0.7390.123/arm64_141.0.7390.123_chrome_installer_uncompressed.exe
+2025/10/22 03:16:57 [2266] <f+++++++++ chrome_installer/141.0.7390.123/x64_141.0.7390.123_chrome_installer_uncompressed.exe
+2025/10/22 03:17:18 [2266] <f+++++++++ chrome_installer/141.0.7390.123/x86_141.0.7390.123_chrome_installer_uncompressed.exe
+2025/10/22 03:17:18 [2266] .d..t...... dnSpy/
+2025/10/22 03:17:18 [2266] <f..t...... dnSpy/ReadMe.md
+2025/10/22 03:17:18 [2266] .d..t...... edge_installer/
+2025/10/22 03:17:18 [2266] <f.st...... edge_installer/ReadMe.md
+2025/10/22 03:17:18 [2266] .d..t...... fort/
+2025/10/22 03:17:18 [2266] <f..t...... fort/ReadMe.md
+2025/10/22 03:17:18 [2266] .d..t...... jadx/
+2025/10/22 03:17:18 [2266] <f..t...... jadx/ReadMe.md
+2025/10/22 03:17:18 [2266] .d..t...... notepad-plus-plus/
+2025/10/22 03:17:18 [2266] <f..t...... notepad-plus-plus/ReadMe.md
+2025/10/22 03:17:18 [2266] .d..t...... opentrack/
+2025/10/22 03:17:18 [2266] <f..t...... opentrack/ReadMe.md
+2025/10/22 03:17:18 [2266] .d..t...... x64dbg/
+2025/10/22 03:17:18 [2266] <f..t...... x64dbg/ReadMe.md
+2025/10/22 03:17:18 [2266] sent 562,631,200 bytes  received 1,413 bytes  6,504,423.27 bytes/sec
+2025/10/22 03:17:18 [2266] total size is 1,232,152,202  speedup is 2.19
